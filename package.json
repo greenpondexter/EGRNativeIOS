@@ -6,6 +6,8 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "react-native": "^0.15.0"
+    "alt": "^0.17.9",
+    "react-native": "^0.15.0",
+    "react-native-button": "^1.2.1"
   }
 }
