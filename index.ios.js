@@ -30,7 +30,7 @@ var InputField = React.createClass({
 
   render: function(){
     return <TextInput
-                style={styles.buttons}
+                style={styles.input}
                 onChangeText={(text) => this.handleChange(text)}
                 value={this.props.text}
             />
@@ -84,21 +84,21 @@ var App = React.createClass({
                   text={this.state.loginInfo.pass}
                   box = 'Pass'
                 />
-              <View style={styles.submitButtonContainer}>
-                <View style={styles.buffer}></View>
-                <TouchableHighlight
-                    style = {styles.button}
-                    onPress={() => {
-                        this.props.navigator.push({
-                            name: 'Home Page'
-                        });
-                    }}>
-                    <Text>
-                      {"Submit"}
-                    </Text>
-                </TouchableHighlight>
-                <View style={styles.buffer}></View>
-              </View>
+                <View style={styles.submitButtonContainer}>
+               <View style={styles.buffer}></View>
+               <TouchableHighlight
+                   style = {styles.button}
+                   onPress={() => {
+                       this.props.navigator.push({
+                           name: 'Home Page'
+                       });
+                   }}>
+                   <Text>
+                     {"Submit"}
+                   </Text>
+               </TouchableHighlight>
+               <View style={styles.buffer}></View>
+             </View>
 
           </View>
       </View>
@@ -152,12 +152,20 @@ var styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
     flex: 1
   },
+  input: {
+      flex: 1,
+      height: 25,
+      marginRight: 20,
+      marginLeft: 20,
+      padding: 5,
+      fontSize: 20
+    },
 
   leftPane: {
     flex: 2
   },
   submitButtonContainer: {
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   buffer: {
     flex:3
@@ -172,6 +180,7 @@ var styles = StyleSheet.create({
     marginBottom: 7,
     height: 40,
     borderRadius: 2
+
   },
   rightPane: {
     flex: 3
@@ -184,55 +193,6 @@ var styles = StyleSheet.create({
   },
 
 });
-//
-// AppRegistry.registerComponent('EGRNativeIOS', () => EGRNativeIOS);
-// module.exports = EGRNativeIOS;
-// var React = require('react-native');
-// var {
-//   AppRegistry,
-//   StyleSheet,
-//   Text,
-//   View,
-// } = React;
-//
-// var EGRNativeIOS = React.createClass({
-//   render: function() {
-//     return (
-//       <View style={styles.container}>
-//         <Text style={styles.welcome}>
-//           Welcome to React Native!
-//         </Text>
-//         <Text style={styles.instructions}>
-//           To get started, edit index.ios.js
-//         </Text>
-//         <Text style={styles.instructions}>
-//           Press Cmd+R to reload,{'\n'}
-//           Cmd+D or shake for dev menu
-//         </Text>
-//       </View>
-//     );
-//   }
-// });
-//
-// var styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#F5FCFF',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//   },
-//   instructions: {
-//     textAlign: 'center',
-//     color: '#333333',
-//     marginBottom: 5,
-//   },
-// });
-
 
 AppRegistry.registerComponent('EGRNativeIOS', () => EGRNativeIOS);
 
