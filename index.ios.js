@@ -18,6 +18,7 @@ var {
   PlatForm,
   TouchableHighlight,
   TouchableNativeFeedback,
+  NavigatorIOS
 
 } = React;
 
@@ -84,13 +85,16 @@ var App = React.createClass({
                   text={this.state.loginInfo.pass}
                   box = 'Pass'
                 />
-                <View style={styles.submitButtonContainer}>
+               <View style={styles.submitButtonContainer}>
                <View style={styles.buffer}></View>
                <TouchableHighlight
                    style = {styles.button}
                    onPress={() => {
                        this.props.navigator.push({
-                           name: 'Home Page'
+                           component: Home,
+                           passProps: {
+                             selectedTab: this.state.selectedTab
+                           }
                        });
                    }}>
                    <Text>
@@ -107,37 +111,30 @@ var App = React.createClass({
 
 });
 
-var RouteMapper = function(route, navigator){
-
-  if(route.name === "Login Page"){
-    return (<App navigator={navigator}/>)
-  }
-  else if(route.name === "Home Page"){
-    return (<Home navigator={navigator}/>)
-  }
-  else if (route.name === "Reports"){
-    return (<Reports navigator={navigator}/>)
-  }
-  else if (route.name === "Dashboards"){
-    return (<Dashboards navigator={navigator}/>)
-  }
-};
-
-
+// var RouteMapper = function(route, navigator){
+//
+//   if(route.name === "Login Page"){
+//     return (<App navigator={navigator}/>)
+//   }
+//   else{
+//     return (<Home selectedTab ={navigator.selectedTab}/>)
+//   }
+// };
 
 
 var EGRNativeIOS = React.createClass({
 
     render: function(){
       return (
-          <Navigator
-            initialRoute = {{name: 'Login Page'}}
-            configureScene={() =>
-               Navigator.SceneConfigs.FloatFromRight
-            }
-            renderScene = {RouteMapper}
-
-          />)
+        <NavigatorIOS
+          style={styles.nav}
+          navigationBarHidden={"true"}
+          initialRoute={{
+            component: App,
+            title: 'My View Title',
+            passProps: { myProp: 'foo' },
+          }}
+        />)
         }
       }
     );
@@ -150,6 +147,9 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    flex: 1
+  },
+  nav: {
     flex: 1
   },
   input: {
